@@ -4,6 +4,8 @@ import ru.avalon.java.j20.labs.Task;
 import ru.avalon.java.j20.labs.core.RandomArrayFactory;
 import ru.avalon.java.j20.labs.models.Numbers;
 
+import java.util.Arrays;
+
 /**
  * Задание №1.
  *
@@ -24,10 +26,25 @@ public class Task1 implements Task {
      */
     @Override
     public void run() {
-        int[] array = arrayFactory.getInstance(20);
+        Integer[] array = arrayFactory.getInstance(20); //Заменил массив примитивов на массив их обёрток. Чтобы сочеталось с дженериками. Так же и в RandomArrayFactory сделал.
         int min = Numbers.min(array);
         int max = Numbers.max(array);
         double avg = Numbers.avg(array);
+
+        /////////код для тестирования /////////////
+        System.out.println("произвольный массив Integer[] array: " + Arrays.toString(array));
+        System.out.println("Numbers.min(array): " + Numbers.min(array));
+        System.out.println("Numbers.max(array): " + Numbers.max(array));
+        System.out.println("Numbers.avg(array): " + Numbers.avg(array));
+
+        //тест на массиве Double[]:
+
+        Double[] doubles = new Double[]{2.0, 5.5, 123.0};
+        System.out.println("\nзаданный массив Double[] doubles: " + Arrays.toString(doubles));
+        System.out.println("Numbers.min(doubles): " + Numbers.min(doubles));
+        System.out.println("Numbers.max(doubles): " + Numbers.max(doubles));
+        System.out.println("Numbers.avg(doubles): " + Numbers.avg(doubles));
+
         /*
          * TODO(Студент): Выполните задание №1
          *
