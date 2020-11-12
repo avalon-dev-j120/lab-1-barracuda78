@@ -32,6 +32,9 @@ public class Task1 implements Task {
         double avg = Numbers.avg(array);
 
         /////////код для тестирования /////////////
+
+        //тест на массиве Integer[]:
+        System.out.println("=====================TASK 1=======================");
         System.out.println("произвольный массив Integer[] array: " + Arrays.toString(array));
         System.out.println("Numbers.min(array): " + Numbers.min(array));
         System.out.println("Numbers.max(array): " + Numbers.max(array));

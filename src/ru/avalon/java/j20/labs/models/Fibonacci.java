@@ -1,6 +1,6 @@
 package ru.avalon.java.j20.labs.models;
 
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Модель получения последовательности чисел Фибоначчи.
@@ -17,6 +17,36 @@ import java.util.Iterator;
  * @see <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">Числа Фибоначчи</a>
  */
 public class Fibonacci implements Iterable<Integer> {
+    //         * 1. Завершить описание класса Fibonacci так, чтобы класс
+    //         *    возвращал заданное количество чисел последовательности
+    //         *    Фибоначчи.
+    //         *    Количество чисел последовательности можно указывать
+    //         *    при создании экземпляра класса.
+    private static int count;                                     //переменная которая указывает кол-во чисел Фибоначчи ---> задается пользователем.
+    private static List<Integer> list = new ArrayList<>(count);   //список, который хранит числа фибоначчи в количестве от 0 до count;
+
+    //конструктор принимает на вход необходимое количество чисел Фибоначчи.
+    public Fibonacci(int count){
+        Fibonacci.count = count;                                 //инициализация поля count.
+        listFill(count);                                    //вызов метода, заполняющего list нужными значениями сразу при создании объекта.
+    }
+    //+  +
+    //0, 1, 1, 2, 3, 5, 8, 13, 21...
+    private void listFill(int count){
+        list.add(0);
+        list.add(1);
+        list.add(1);
+        int previousCounter = 1;
+        int counter = 1;
+        int i = 3;
+        while(i++ < count){
+            list.add(previousCounter + counter);
+
+            int temp = previousCounter;
+            previousCounter = counter;
+            counter =  counter + temp;
+        }
+    }
 
     /**
      * Итератор, выполняющий обход последовательности
@@ -32,9 +62,12 @@ public class Fibonacci implements Iterable<Integer> {
          * последовательности существует. В обратном случае
          * {@code false}.
          */
+
+        int cursor = -1;
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return cursor < count-1;  //индекс последнего элемента списка list = count-1.
+            //throw new UnsupportedOperationException("Not implemented yet!");
         }
 
         /**
@@ -43,9 +76,15 @@ public class Fibonacci implements Iterable<Integer> {
          *
          * @return следующее число последовательности.
          */
+
+        //NoSuchElementException() ---> кидается в аналогичном методе в AbstractList.
         @Override
         public Integer next() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            while(hasNext()){
+                cursor++;
+                return list.get(cursor);
+            }
+            throw new NoSuchElementException();
         }
     }
 
@@ -58,5 +97,14 @@ public class Fibonacci implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new FibonacciIterator();
+    }
+
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static List<Integer> getList() {
+        return list;
     }
 }
