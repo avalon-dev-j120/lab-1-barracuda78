@@ -3,8 +3,7 @@ package ru.avalon.java.j20.labs.tasks;
 import ru.avalon.java.j20.labs.Task;
 import ru.avalon.java.j20.labs.core.RandomArrayFactory;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Задание №5.
@@ -28,6 +27,19 @@ public class Task5 implements Task {
         List<Integer> list = null;
 
         Set<Integer> set = null;
+
+        list = new ArrayList<>(Arrays.asList(array));
+
+        set = new HashSet<>(Arrays.asList(array));
+
+        ///////////код для проверки://///////////
+        System.out.println("\n====================TASK 5=======================");
+        System.out.println("Integer[]: ");
+        System.out.println(Arrays.toString(array));
+        System.out.println("ArrayList: ");
+        System.out.println(list);
+        System.out.println("HashSet: ");
+        System.out.println(set);
 
         /**
          * TODO(Студент): Выполните задание №5
